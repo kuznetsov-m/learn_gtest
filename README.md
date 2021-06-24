@@ -7,3 +7,6 @@
 
 # Notes
 gtest_force_shared_crt - googletest variable (check it in CMakeCache)
+
+# Links
+[gtest_tutorial](https://youtu.be/Lp1ifh9TuFI)
