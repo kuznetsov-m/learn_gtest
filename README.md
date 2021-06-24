@@ -8,5 +8,9 @@
 # Notes
 gtest_force_shared_crt - googletest variable (check it in CMakeCache)
 
+run one of tests (not working for me on mac):
+
+`./test/ExampleTests --gtest_filter=ExampleTests2*`
+
 # Links
 [gtest_tutorial](https://youtu.be/Lp1ifh9TuFI)

@@ -2,6 +2,26 @@
 
 #include "../Example.hpp"
 
+struct ExampleTests
+    : public ::testing::Test
+{
+    int *x;
+
+    int GetX() {
+        return *x;
+    }
+
+    virtual void SetUp() override {
+        printf("Starting up!\n");
+        x = new int(42);
+    }
+
+    virtual void TearDown() override {
+        printf("Tearing down!\n");
+        delete x;
+    }
+};
+
 // TEST(ExampleTests, DemoGTestMacros) {
 //     // EXPECT_TRUE(true);  // success
 
@@ -15,16 +35,15 @@
 //     EXPECT_EQ(true, result) << "Error description";
 // }
 
-TEST(ExampleTests, MAC) {
-    int x = 42;
+TEST_F(ExampleTests, MAC) {
     int y = 16;
     int sum = 100;
     int oldSum = sum;
-    int expectedNewSum = oldSum + x * y;
+    int expectedNewSum = oldSum + GetX() * y;
 
     EXPECT_EQ(
         expectedNewSum,
-        MAC(x, y, sum)
+        MAC(GetX(), y, sum)
     );
 
     EXPECT_EQ(
@@ -33,7 +52,7 @@ TEST(ExampleTests, MAC) {
     );
 }
 
-TEST(ExampleTests, Square) {
+TEST(ExampleTests2, Square) {
     int x = 5;
     int expectedSquare = x * x;
     EXPECT_EQ(
