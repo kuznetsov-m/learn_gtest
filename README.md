@@ -2,4 +2,8 @@
 1. create `build` dir
 2. exec from build dir `cmake ..`
 3. `cmake --build .` or `make`
-4. check compiled program `./my_program`
+4. from comand palet `CMake: Run Tests`
+5. check compiled program `./my_program`
+
+# Notes
+gtest_force_shared_crt - googletest variable (check it in CMakeCache)
