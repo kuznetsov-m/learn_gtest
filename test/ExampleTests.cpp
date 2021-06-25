@@ -22,19 +22,6 @@ struct ExampleTests
     }
 };
 
-// TEST(ExampleTests, DemoGTestMacros) {
-//     // EXPECT_TRUE(true);  // success
-
-//     // ASSERT_TRUE(false); // fail and stop test execution
-    
-//     // EXPECT_TRUE(false); // fail
-    
-//     EXPECT_EQ(true, true); //
-
-//     const bool result = f();
-//     EXPECT_EQ(true, result) << "Error description";
-// }
-
 TEST_F(ExampleTests, MAC) {
     int y = 16;
     int sum = 100;
@@ -49,6 +36,13 @@ TEST_F(ExampleTests, MAC) {
     EXPECT_EQ(
         expectedNewSum,
         sum
+    );
+}
+
+TEST_F(ExampleTests, f2) {
+    EXPECT_EQ(
+        GetX(),
+        f2(GetX())
     );
 }
 
