@@ -15,4 +15,6 @@ enable_testing()
 
 add_subdirectory(example_lib)
 
+add_subdirectory(app)
+
 add_subdirectory(test)
