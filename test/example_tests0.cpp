@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../Example.hpp"
+#include "../example.hpp"
 
 TEST(ExampleTests0, DemoGTestMacros) {
     const bool result = f();

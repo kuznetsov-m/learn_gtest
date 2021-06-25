@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-set(This Example)
+set(This example)
 
 project(${This} C CXX)
 
@@ -17,12 +17,12 @@ enable_testing()
 
 set(
     Headers
-    Example.hpp
+    example.hpp
 )
 
 set(
     Sources
-    Example.cpp
+    example.cpp
 )
 
 add_library(${This} STATIC ${Sources} ${Headers})

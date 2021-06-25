@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-set(This ExampleTests)
+set(This example_tests)
 
 # -------------------------------------
 # Download googletest
@@ -17,8 +17,8 @@ FetchContent_MakeAvailable(gtest)
 
 set(
     Sources
-    ExampleTests.cpp
-    ExampleTests0.cpp
+    example_tests.cpp
+    example_tests0.cpp
 )
 
 add_executable(${This} ${Sources})
