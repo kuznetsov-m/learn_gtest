@@ -18,6 +18,7 @@ FetchContent_MakeAvailable(gtest)
 set(
     Sources
     ExampleTests.cpp
+    ExampleTests0.cpp
 )
 
 add_executable(${This} ${Sources})
