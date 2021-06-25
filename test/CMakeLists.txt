@@ -29,7 +29,11 @@ target_link_libraries(${This} PUBLIC
     Example
 )
 
-add_test(
-    NAME ${This}
-    COMMAND ${This}
-)
+# automatic discovery of unit tests
+include(GoogleTest)
+gtest_discover_tests(${This}
+  PROPERTIES
+    LABELS "unit"
+  DISCOVERY_TIMEOUT  # how long to wait (in seconds) before crashing
+    240
+  )
