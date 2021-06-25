@@ -13,10 +13,6 @@ enable_testing()
 # gtest_force_shared_crt (check it in CMakeCache)
 # set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-# add_subdirectory(googletest)
-
-
-
 add_subdirectory(example_lib)
 
 add_subdirectory(test)

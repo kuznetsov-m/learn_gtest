@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../example_lib/example.hpp"
+#include <example.hpp>
 
 struct ExampleTests
     : public ::testing::Test
