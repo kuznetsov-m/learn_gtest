@@ -15,16 +15,8 @@ enable_testing()
 
 # add_subdirectory(googletest)
 
-set(
-    Headers
-    example.hpp
-)
 
-set(
-    Sources
-    example.cpp
-)
 
-add_library(${This} STATIC ${Sources} ${Headers})
+add_subdirectory(example_lib)
 
 add_subdirectory(test)
