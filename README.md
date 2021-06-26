@@ -1,3 +1,5 @@
+[![Testing](https://github.com/kuznetsov-m/learn_gtest/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/kuznetsov-m/learn_gtest/actions/workflows/test.yml)
+
 # App cli keys
 ```
 --show_paremeters
