@@ -10,15 +10,6 @@
 #endif
 
 TEST(example_lib, circleSquare) {
-    double radius = 10.;
-    double expectedSquare = radius * M_PI;
-    EXPECT_DOUBLE_EQ(
-        expectedSquare,
-        circleSquare(radius)
-    );
-}
-
-TEST(example_lib, circleSquare_double) {
     double radius = 12.1050406;
     double expectedSquare = radius * M_PI;
     EXPECT_DOUBLE_EQ(
