@@ -17,6 +17,7 @@ FetchContent_MakeAvailable(gtest)
 
 set(
     Sources
+    example_lib_tests.cpp
     example_tests.cpp
     example_tests0.cpp
 )
