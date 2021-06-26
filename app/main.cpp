@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <iomanip> // std::setprecision
+#include <string.h> // strcmp
 
 static inline int skip_prefix(const char *str, const char *prefix,
                               const char **out)
