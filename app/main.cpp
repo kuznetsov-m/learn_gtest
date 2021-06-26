@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
         //or C++20 std::format
         //std::cout << std::format("{:.2}\n", circle_square(radius));
 
-        std::cout << "Square: " << circle_square(radius) << std::endl;
+        std::cout << "Square: " << circleSquare(radius) << std::endl;
     }
     else {
         std::cout << "Unknown shape: " << shape << std::endl;
