@@ -6,21 +6,23 @@
 #include <algorithm>
 #include <iomanip> // std::setprecision
 #include <string.h> // strcmp
+#include <cstdlib> // strtod
+#include <cerrno> // errno
 
 enum Shape {
     none,
     circle,
+    rectangle,
+    triangle
 };
 
 std::map<std::string, Shape> shapesMap;
 
 void initShapesMap() {
     shapesMap["circle"] = Shape::circle;
+    shapesMap["rectangle"] = Shape::rectangle;
+    shapesMap["triangle"] = Shape::triangle;
 }
-
-bool show_parameters = false;
-static Shape shape = Shape::none;
-static double radius = 0;
 
 static inline int skip_prefix(const char *str, const char *prefix,
                               const char **out)
@@ -34,56 +36,52 @@ static inline int skip_prefix(const char *str, const char *prefix,
     return 0;
 }
 
-// return error arg count
-//        -1 - sucsess
-int readArgs(int argc, char **argv) {
-    const char *shape_value = "";
+double strToD(char *str, bool &isError) {
+    char *e;
+    errno = 0;
+    auto v = std::strtod(str, &e);
 
-    for (int i = 1; i < argc; ++i) {
-        const char *arg = argv[i];
-        const char *v;
-
-        if (!strcmp(arg, "--show_parameters")) {
-            show_parameters = true;
-            continue;
-        }
-        if (skip_prefix(arg, "--shape=", &v)) {
-            shape_value = v;
-            continue;
-        }
-        if (skip_prefix(arg, "--radius=", &v)) {
-            radius = std::atof(v);
-            continue;
-        }
-
-        // unknown argument
-        return i;
+    if (*e != '\0' ||  // error, we didn't consume the entire string
+        errno != 0 )   // error, overflow or underflow
+    {
+        isError = true;
     }
-
-    if (shapesMap.find(std::string(shape_value)) != shapesMap.end()) {
-         shape = shapesMap.at(std::string(shape_value));
+    else {
+        isError = false;
     }
-
-    return -1;
+    return v;
 }
 
-// argc - ARGument Count
-// argv - ARGument Vector
-int main(int argc, char **argv) {
-    initShapesMap();
 
-    auto errorArgc = readArgs(argc, argv);
-    if (errorArgc > 0) {
-        std::cout << "Unknown argument: " << argv[errorArgc] << std::endl;
-        return 0;
+
+bool process(int argc, char **argv) {
+    bool result = false;
+
+    if (argc <= 1) {
+        return result;
     }
 
-    if (show_parameters) {
-        std::cout << "show_parameters: " << std::boolalpha << show_parameters << std::endl;
-        std::cout << "shape: " << shape << std::endl;
-        std::cout << "radius: " << radius << std::endl;
+    const char *v;
+    auto shape = Shape::none;
+    if (skip_prefix(argv[1], "--shape=", &v)) {
+        if (shapesMap.find(std::string(v)) != shapesMap.end()) {
+             shape = shapesMap.at(std::string(v));
+        }
     }
 
+    std::vector<double> values;
+
+    for (int i = 2; i < argc; ++i) {
+        auto isError = false;
+        auto vv = argv[2];
+        auto v = strToD(argv[i], isError);
+        if (!isError)
+            values.push_back(v);
+        else
+            return result;
+    }
+
+    // setup double display format
     std::cout << std::fixed;
     std::cout << std::setprecision(2);
     //or C++20 std::format
@@ -91,13 +89,39 @@ int main(int argc, char **argv) {
 
     switch (shape) {
     case Shape::circle:
-        std::cout << "Square: " << circleSquare(radius) << std::endl;
+        if (values.size() >= 1) {
+            std::cout << "Square: " << circleSquare(values.at(0)) << std::endl;
+            result = true;
+        }
+        break;
+    case Shape::rectangle:
+        if (values.size() >= 2) {
+            std::cout << "Square: " << rectangleSquare(values.at(0), values.at(1)) << std::endl;
+            result = true;
+        }
+        break;
+    case Shape::triangle:
+        if (values.size() >= 2) {
+            std::cout << "Square: " << triangleSquare(values.at(0), values.at(1)) << std::endl;
+            result = true;
+        }
         break;
     case Shape::none:
     default:
-        std::cout << "shape parameter not specified. Use --shape=[shape] key" << std::endl;
-        return 0;
+        break;
     }
+
+    return result;
+}
+
+
+// argc - ARGument Count
+// argv - ARGument Vector
+int main(int argc, char **argv) {
+    initShapesMap();
+
+    if (!process(argc, argv))
+        std::cout << "Incorrect arguments syntax" << std::endl;
 
     return 0;
 }
