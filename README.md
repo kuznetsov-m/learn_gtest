@@ -1,7 +1,7 @@
 1. create `build` dir
 2. exec from build dir `cmake ..`
 3. `cmake --build .` or `make`
-4. from comand palet `CMake: Run Tests` or from terminal `CTest`
+4. from VSCode Command Palette `CMake: Run Tests` or from terminal `CTest`
 5. check compiled program `./my_program`
 
 # Notes
