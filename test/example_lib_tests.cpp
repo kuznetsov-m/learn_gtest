@@ -9,7 +9,7 @@
     #define M_PI 3.14159265358979323846
 #endif
 
-TEST(test, circle_square) {
+TEST(example_lib, circleSquare) {
     double radius = 10.;
     double expectedSquare = radius * M_PI;
     EXPECT_DOUBLE_EQ(
