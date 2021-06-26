@@ -84,13 +84,13 @@ int main(int argc, char **argv) {
         std::cout << "radius: " << radius << std::endl;
     }
 
+    std::cout << std::fixed;
+    std::cout << std::setprecision(2);
+    //or C++20 std::format
+    //std::cout << std::format("{:.2}\n", circle_square(radius));
+
     switch (shape) {
     case Shape::circle:
-        std::cout << std::fixed;
-        std::cout << std::setprecision(2);
-        //or C++20 std::format
-        //std::cout << std::format("{:.2}\n", circle_square(radius));
-
         std::cout << "Square: " << circleSquare(radius) << std::endl;
         break;
     case Shape::none:
