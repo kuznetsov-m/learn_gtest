@@ -1,3 +1,10 @@
+# App cli keys
+```
+--show_paremeters
+--shape [circle]
+--radius=<int>
+```
+
 # CMake build
 1. create `build` dir
 2. exec from build dir `cmake ..`
