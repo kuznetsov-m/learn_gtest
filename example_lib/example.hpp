@@ -9,7 +9,6 @@ int MAC(int x, int y, int &sum);
 
 int Square(int x);
 
-double circleSquare(int radius);
+double circleSquare(double radius);
 
 #endif /* EXAMPLE_HPP */
-

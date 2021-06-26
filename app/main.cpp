@@ -20,7 +20,7 @@ static inline int skip_prefix(const char *str, const char *prefix,
 
 bool show_parameters = false;
 static const char *shape;
-static int radius = 0;
+static double radius = 0;
 
 // argc - ARGument Count
 // argv - ARGument Vector
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
             continue;
         }
         if (skip_prefix(arg, "--radius=", &v)) {
-            radius = atoi(v);
+            radius = std::atof(v);
             continue;
         }
 

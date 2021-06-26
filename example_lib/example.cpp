@@ -24,7 +24,7 @@ int Square(int x) {
     return x * x;
 }
 
-double circleSquare(int radius)
+double circleSquare(double radius)
 {
     return radius * M_PI;
 }
