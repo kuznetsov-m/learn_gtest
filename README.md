@@ -1,4 +1,4 @@
-# Build
+# CMake build
 1. create `build` dir
 2. exec from build dir `cmake ..`
 3. `cmake --build .` or `make`
@@ -14,4 +14,5 @@ run one of tests (not working for me on mac):
 
 # Links
 - [gtest_tutorial](https://youtu.be/Lp1ifh9TuFI)
+- [gtest-demo github repo](https://github.com/bast/gtest-demo)
 - [tell cmake which compiler it should use](https://stackoverflow.com/a/63606463/10504918)
