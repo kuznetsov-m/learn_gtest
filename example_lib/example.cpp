@@ -28,3 +28,13 @@ double circleSquare(double radius)
 {
     return radius * M_PI;
 }
+
+double rectangleSquare(double a, double b)
+{
+    return a * b;
+}
+
+double triangleSquare(double a, double h)
+{
+    return (a * h) / 2.;
+}
