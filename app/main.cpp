@@ -2,9 +2,25 @@
 #include <example.hpp>
 #include <vector>
 #include <string>
+#include <map>
 #include <algorithm>
 #include <iomanip> // std::setprecision
 #include <string.h> // strcmp
+
+enum Shape {
+    none,
+    circle,
+};
+
+std::map<std::string, Shape> shapesMap;
+
+void initShapesMap() {
+    shapesMap["circle"] = Shape::circle;
+}
+
+bool show_parameters = false;
+static Shape shape = Shape::none;
+static double radius = 0;
 
 static inline int skip_prefix(const char *str, const char *prefix,
                               const char **out)
@@ -18,13 +34,10 @@ static inline int skip_prefix(const char *str, const char *prefix,
     return 0;
 }
 
-bool show_parameters = false;
-static const char *shape;
-static double radius = 0;
-
-// argc - ARGument Count
-// argv - ARGument Vector
-int main(int argc, char **argv) {
+// return error arg count
+//        -1 - sucsess
+int readArgs(int argc, char **argv) {
+    const char *shape_value = "";
 
     for (int i = 1; i < argc; ++i) {
         const char *arg = argv[i];
@@ -35,7 +48,7 @@ int main(int argc, char **argv) {
             continue;
         }
         if (skip_prefix(arg, "--shape=", &v)) {
-            shape = v;
+            shape_value = v;
             continue;
         }
         if (skip_prefix(arg, "--radius=", &v)) {
@@ -43,7 +56,25 @@ int main(int argc, char **argv) {
             continue;
         }
 
-        std::cout << "Unknown argument: " << arg << std::endl;
+        // unknown argument
+        return i;
+    }
+
+    if (shapesMap.find(std::string(shape_value)) != shapesMap.end()) {
+         shape = shapesMap.at(std::string(shape_value));
+    }
+
+    return -1;
+}
+
+// argc - ARGument Count
+// argv - ARGument Vector
+int main(int argc, char **argv) {
+    initShapesMap();
+
+    auto errorArgc = readArgs(argc, argv);
+    if (errorArgc > 0) {
+        std::cout << "Unknown argument: " << argv[errorArgc] << std::endl;
         return 0;
     }
 
@@ -53,21 +84,19 @@ int main(int argc, char **argv) {
         std::cout << "radius: " << radius << std::endl;
     }
 
-    if (!shape) {
-        std::cout << "--shape key is missed" << std::endl;
-        return 0;
-    }
-
-    if (strcmp(shape, "circle") == 0) {
+    switch (shape) {
+    case Shape::circle:
         std::cout << std::fixed;
         std::cout << std::setprecision(2);
         //or C++20 std::format
         //std::cout << std::format("{:.2}\n", circle_square(radius));
 
         std::cout << "Square: " << circleSquare(radius) << std::endl;
-    }
-    else {
-        std::cout << "Unknown shape: " << shape << std::endl;
+        break;
+    case Shape::none:
+    default:
+        std::cout << "shape parameter not specified. Use --shape=[shape] key" << std::endl;
+        return 0;
     }
 
     return 0;
