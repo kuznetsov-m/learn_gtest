@@ -1,11 +1,13 @@
 set(
     Headers
     example.hpp
+    functions.h
 )
 
 set(
     Sources
     example.cpp
+    functions.cpp
 )
 
 add_library(${This} STATIC ${Sources} ${Headers})
