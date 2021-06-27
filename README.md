@@ -2,9 +2,12 @@
 
 # App cli keys
 ```
---show_paremeters
---shape [circle]
---radius=<int>
+--shape=[circle, rectangle, triangle] [int values]
+
+example:
+--shape=circle [radius_int_value]
+--shape=rectangle [a_int_value] [b_int_value]
+--shape=triangle [a_int_value] [h_int_value]
 ```
 
 # CMake build
@@ -15,6 +18,8 @@
 5. check compiled program `./my_program`
 
 # Notes
+Since gtest is intended for testing libraries (we cannot test code from an executable project). Then all the methods for the application were moved to the example_lib library.
+
 gtest_force_shared_crt - googletest variable (check it in CMakeCache)
 
 run one of tests (not working for me on mac):
