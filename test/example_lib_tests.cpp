@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <example.hpp>
 #include <functions.h>
 
 #include <math.h>

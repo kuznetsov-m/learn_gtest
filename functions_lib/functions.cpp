@@ -1,7 +1,6 @@
 #include "functions.h"
 
 #include <iostream>
-#include "example.hpp"
 #include <vector>
 #include <string>
 #include <map>
@@ -10,6 +9,12 @@
 #include <string.h> // strcmp
 #include <cstdlib> // strtod
 #include <cerrno> // errno
+#include <math.h>
+
+// for windows build
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
 
 enum Shape {
     none,
@@ -113,4 +118,19 @@ bool process(int argc, const char **argv) {
     }
 
     return result;
+}
+
+double circleSquare(double radius)
+{
+    return radius * M_PI;
+}
+
+double rectangleSquare(double a, double b)
+{
+    return a * b;
+}
+
+double triangleSquare(double a, double h)
+{
+    return (a * h) / 2.;
 }
