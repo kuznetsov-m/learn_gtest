@@ -30,3 +30,4 @@ run one of tests (not working for me on mac):
 - [gtest_tutorial](https://youtu.be/Lp1ifh9TuFI)
 - [gtest-demo github repo](https://github.com/bast/gtest-demo)
 - [tell cmake which compiler it should use](https://stackoverflow.com/a/63606463/10504918)
+- [Просто о сложном — пишем тесты с Google C++ Testing Framework (GTest, GMock)](https://habr.com/ru/post/667880)
